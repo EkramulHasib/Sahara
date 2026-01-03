@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Style+Script&display=swap");
-
 :root {
   /* Base */
   --base: #1e1e2e;
@@ -79,18 +77,38 @@
 }
 
 @font-face {
+  font-family: "Google Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/google-sans.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Style Script";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/style-script.woff2") format("woff2");
+}
+
+@font-face {
   font-family: "Material Symbols Outlined";
-  src: url("../fonts/material-symbols-outlined.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/material-symbols-outlined.woff2") format("woff2");
 }
 
 .material-symbols-outlined {
   font-family: "Material Symbols Outlined";
   font-size: 24px;
+  font-display: swap;
   color: var(--subtext0);
 }
 
 * {
-  font-family: "Google Sans", sans-serif;
+  font-family: "Google Sans", Inter, sans-serif;
   color: var(--text);
 }
 
@@ -107,10 +125,15 @@ body {
   background-color: var(--crust);
 }
 
+#header {
+  min-height: 60px;
+}
+
 header {
   padding: 16px 100px;
   display: flex;
   justify-content: space-between;
+  box-sizing: border-box;
   align-items: center;
   border-bottom: 1px solid var(--surface0);
   background-color: var(--mantle);
@@ -190,6 +213,7 @@ a[aria-current="page"] {
   cursor: pointer;
   color: var(--subtext0);
   padding: 0;
+  transition: transform 0.1s ease;
 }
 
 .icon-btn[aria-hidden="true"] {
@@ -198,13 +222,15 @@ a[aria-current="page"] {
 
 .icon-btn:hover {
   background-color: transparent;
+  transform: translateY(-2px);
 }
 
 .search-form {
   display: none;
   align-items: center;
   gap: 8px;
-  background-color: var(--surface0);
+  background-color: var(--crust);
+  border: 1px solid var(--surface0);
   border-radius: 20px;
 }
 
