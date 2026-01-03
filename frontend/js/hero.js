@@ -38,7 +38,7 @@
         <button class="buy-btn">${slide.button}</button>
         <a href="#" class="more">
           Find more
-          <span class="material-icons-outlined">arrow_forward</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
         </a>
       </div>
     `;

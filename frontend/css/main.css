@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Style+Script&display=swap");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
 
 :root {
   /* Base */
@@ -77,6 +76,17 @@
     --overlay1: #8c8fa1;
     --overlay2: #7c7f93;
   }
+}
+
+@font-face {
+  font-family: "Material Symbols Outlined";
+  src: url("../fonts/material-symbols-outlined.woff2") format("woff2");
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-size: 24px;
+  color: var(--subtext0);
 }
 
 * {
@@ -171,10 +181,6 @@ a[aria-current="page"] {
 .seller-btn:hover {
   background-color: var(--maroon);
   color: var(--base);
-}
-
-.material-icons-outlined {
-  color: var(--subtext0);
 }
 
 .icon-btn {
@@ -306,7 +312,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .more:hover,
-.more:hover .material-icons-outlined {
+.more:hover .material-symbols-outlined {
   color: var(--yellow);
 }
 
@@ -380,7 +386,7 @@ input[type="search"]::-webkit-search-cancel-button {
   cursor: pointer;
 }
 
-.wishlist .material-icons-outlined {
+.wishlist .material-symbols-outlined {
   font-size: 20px;
 }
 
@@ -449,7 +455,7 @@ input[type="search"]::-webkit-search-cancel-button {
   transform: translateY(-6px);
 }
 
-.spec-card .material-icons-outlined {
+.spec-card .material-symbols-outlined {
   font-size: 48px;
   margin-top: 25px;
 }
@@ -600,7 +606,7 @@ footer {
   color: var(--subtext1);
 }
 
-.footer-section.contact li .material-icons-outlined {
+.footer-section.contact li .material-symbols-outlined {
   font-size: 20px;
   color: var(--subtext0);
 }
