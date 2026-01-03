@@ -417,6 +417,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .product-card {
   background: var(--base);
+  border: 1px solid var(--surface0);
   border-radius: 16px;
   padding: 16px;
   position: relative;
@@ -449,7 +450,7 @@ input[type="search"]::-webkit-search-cancel-button {
   top: 12px;
   right: 12px;
   background: var(--surface0);
-  border: none;
+  border: 1px solid var(--surface1);
   border-radius: 50%;
   padding: 4px 6px;
   cursor: pointer;
@@ -513,7 +514,7 @@ input[type="search"]::-webkit-search-cancel-button {
   justify-content: center;
   align-items: center;
   background: var(--base);
-  border: 1px solid var(--surface1);
+  border: 1px solid var(--surface0);
   border-radius: 16px;
   padding: 20px 60px;
   transition:
@@ -567,7 +568,7 @@ input[type="search"]::-webkit-search-cancel-button {
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid var(--surface1);
+  border: 1px solid var(--surface0);
 }
 
 .input-group input[type="email"] {
