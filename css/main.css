@@ -482,7 +482,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .spec,
 .newsletter {
   margin-top: 60px;
-  max-width: 1200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
