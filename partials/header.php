@@ -12,12 +12,12 @@
   ?>
 
   <nav>
-    <a href="/" <?php echo aria_current('/') ?>>Home</a>
-    <a href="/pages/shop.php" <?php echo aria_current('/pages/shop.php') ?>>Shop</a>
-    <a href="/pages/about.php" <?php echo aria_current('/pages/about.php') ?>>About</a>
-    <a href="/pages/contact.php" <?php echo aria_current('/pages/contact.php') ?>>Contact</a>
-    <a href="/pages/seller.php" <?php echo aria_current('/pages/seller.php') ?> aria-label="Seller">Seller</a>
-    <a href="/pages/admin.php" <?php echo aria_current('/pages/admin.php') ?> aria-label="Admin">Admin</a>
+    <a href="/" <?php echo aria_current('/'); ?>>Home</a>
+    <a href="/pages/shop.php" <?php echo aria_current('/pages/shop.php'); ?>>Shop</a>
+    <a href="/pages/about.php" <?php echo aria_current('/pages/about.php'); ?>>About</a>
+    <a href="/pages/contact.php" <?php echo aria_current('/pages/contact.php'); ?>>Contact</a>
+    <a href="/pages/seller.php" <?php echo aria_current('/pages/seller.php'); ?> aria-label="Seller">Seller</a>
+    <a href="/pages/admin.php" <?php echo aria_current('/pages/admin.php'); ?> aria-label="Admin">Admin</a>
   </nav>
 
   <div class="header-right">

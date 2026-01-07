@@ -200,7 +200,7 @@ button:hover {
 }
 
 nav a {
-  margin: 0 16px;
+  margin: 0 8px;
   text-decoration: none;
   color: var(--subtext0);
   font-weight: 500;
@@ -263,13 +263,20 @@ a[aria-current="page"] {
 .search-form {
   position: absolute;
   right: 40px;
-  display: none;
+  display: inline-flex;
   align-items: center;
   background-color: var(--crust);
   border: 1px solid var(--surface0);
   border-radius: 20px;
   padding: 2px 10px;
   z-index: 10;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(20px) scale(0.95);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .search-form .material-symbols-outlined {
@@ -277,7 +284,9 @@ a[aria-current="page"] {
 }
 
 .search-form[aria-hidden="false"] {
-  display: inline-flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
 }
 
 .search-form input {
