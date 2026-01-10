@@ -30,15 +30,14 @@
       <span class="material-symbols-outlined">search</span>
     </button>
 
-    <form action="#" class="search-form" id="search-form" aria-hidden="true">
+    <form class="search-form" id="search-form" aria-hidden="true">
       <span class="material-symbols-outlined">search</span>
       <input id="search-input" type="search" placeholder="Search products..." />
     </form>
+    <script defer src="../js/search.js"></script>
 
     <button class="icon-btn" type="button" id="shopping-cart">
       <span class="material-symbols-outlined">shopping_cart</span>
     </button>
   </div>
 </header>
-
-<script defer src="/js/search.js"></script>

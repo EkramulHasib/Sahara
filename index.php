@@ -1,12 +1,13 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sahara</title>
-  <link rel="icon" href="assets/favicon.png">
+  <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="css/main.css" />
+  <script type="module" src="js/home.js"></script>
   <script defer src="js/hero.js"></script>
   <script defer src="js/newsletter.js"></script>
 </head>
@@ -28,64 +29,13 @@
     <section class="products">
       <h2>Popular Products</h2>
 
-      <div class="product-grid">
-        <div class="product-card">
-          <button class="wishlist">
-            <span class="material-symbols-outlined">favorite_border</span>
-          </button>
-
-          <div class="product-image">
-            <img src="assets/apple_earphone_image.png" alt="" />
-          </div>
-
-          <h3>Apple Pro 2nd Gen</h3>
-          <p class="desc">Apple Airpods Pro (2nd Gen) with Magsafe</p>
-
-          <div class="product-info">
-            <span class="price">$399.99</span>
-            <button>Buy now</button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <button class="wishlist">
-            <span class="material-symbols-outlined">favorite_border</span>
-          </button>
-
-          <div class="product-image">
-            <img src="assets/apple_earphone_image.png" alt="" />
-          </div>
-
-          <h3>Apple Pro 2nd Gen</h3>
-          <p class="desc">Apple Airpods Pro (2nd Gen) with Magsafe</p>
-
-          <div class="product-info">
-            <span class="price">$399.99</span>
-            <button>Buy now</button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <button class="wishlist">
-            <span class="material-symbols-outlined">favorite_border</span>
-          </button>
-
-          <div class="product-image">
-            <img src="assets/apple_earphone_image.png" alt="" />
-          </div>
-
-          <h3>Apple Pro 2nd Gen</h3>
-          <p class="desc">Apple Airpods Pro (2nd Gen) with Magsafe</p>
-
-          <div class="product-info">
-            <span class="price">$399.99</span>
-            <button>Buy now</button>
-          </div>
-        </div>
+      <div class="product-grid" id="home-products-grid">
       </div>
 
       <div class="see-more">
-        <button>See more</button>
+        <button>
+          <a href="/pages/shop.php">See more</a>
+        </button>
       </div>
     </section>
 

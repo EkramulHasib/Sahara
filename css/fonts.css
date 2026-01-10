@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Google Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/google-sans.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Style Script";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/style-script.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/material-symbols-outlined.woff2") format("woff2");
+}

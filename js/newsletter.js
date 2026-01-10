@@ -21,8 +21,10 @@
   });
 
   function showError(message) {
-    error.textContent = "* " + message;
-    error.style.display = "block";
+    error.innerHTML = `
+      <span class="material-symbols-outlined">error</span>${message}
+    `;
+    error.style.display = "inline-flex";
   }
 
   function clearError() {
