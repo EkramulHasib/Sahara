@@ -4,7 +4,7 @@
   const searchForm = document.getElementById("search-form");
   const searchInput = document.getElementById("search-input");
 
-  if (!toggleBtn || !searchForm) return;
+  if (!header || !toggleBtn || !searchForm || !searchInput) return;
 
   const params = new URLSearchParams(window.location.search);
   const qParam = (params.get("q") || "").trim();
@@ -18,6 +18,7 @@
   function applyState() {
     header.classList.toggle("search-active", isOpen);
     searchForm.setAttribute("aria-hidden", String(!isOpen));
+    // toggleBtn.setAttribute("aria-hidden", String(isOpen));
     if (isOpen) requestAnimationFrame(() => searchInput?.focus());
   }
 
@@ -49,7 +50,12 @@
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && isOpen) {
-      searchInput.value = "";
+      if (searchInput.value) {
+        searchInput.value = "";
+      } else {
+        toggleSearch(false);
+        searchInput.blur();
+      }
     }
   });
 })();
@@ -61,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", (ev) => {
     ev.preventDefault();
-    const target = "/pages/shop.php";
+    const target = "/shop.php";
     const query = input.value.trim();
 
     if (!query) {
