@@ -3,7 +3,7 @@
 
 .material-symbols-outlined {
   font-family: "Material Symbols Outlined";
-  font-size: 24px;
+  font-size: 22px;
   font-display: swap;
   color: var(--subtext0);
 }
@@ -34,6 +34,7 @@ header {
   align-items: center;
   border-bottom: 1px solid var(--surface0);
   background-color: var(--mantle);
+  font-size: 15px;
 }
 
 @media (max-width: 768px) {
@@ -138,7 +139,7 @@ a[aria-current="page"] {
   color: var(--base);
 }
 
-.icon-btn {
+.btn-icon {
   background: none;
   border: none;
   display: inline-flex;
@@ -148,18 +149,18 @@ a[aria-current="page"] {
   transition: transform 0.1s ease;
 }
 
-.icon-btn[aria-hidden="true"] {
+.btn-icon[aria-hidden="true"] {
   display: none;
 }
 
-.icon-btn:hover {
+.btn-icon:hover {
   background-color: transparent;
   transform: translateY(-2px);
 }
 
 .search-form {
   position: absolute;
-  right: 40px;
+  right: 170px;
   display: inline-flex;
   align-items: center;
   background-color: var(--crust);
@@ -1050,4 +1051,114 @@ footer {
   .shop-subtitle {
     font-size: 14px;
   }
+}
+
+.account-dropdown {
+  position: relative;
+}
+
+.btn-account {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.account-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 260px;
+  background: var(--mantle);
+  border: 1px solid var(--surface0);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 8px;
+  z-index: 1000;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.account-menu[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.account-menu-header {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-menu-header .material-symbols-outlined {
+  font-size: 40px;
+  color: var(--blue);
+}
+
+.account-menu-header > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-menu-header p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.user-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-email {
+  color: var(--subtext0);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-menu-divider {
+  height: 1px;
+  background: var(--surface0);
+  margin: 8px 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.menu-item:hover {
+  background: var(--surface0);
+}
+
+.menu-item .material-symbols-outlined {
+  font-size: 22px;
+  color: var(--subtext0);
+}
+
+.menu-item.logout,
+.menu-item.logout .material-symbols-outlined {
+  color: var(--red);
+}
+
+.menu-item.logout:hover {
+  background: color-mix(in srgb, var(--red) 10%, transparent);
 }
