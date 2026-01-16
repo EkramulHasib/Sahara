@@ -17,9 +17,18 @@ import {
 
   // Initialize
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    validateEmail();
-    validatePassword();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+
+    if (!isEmailValid || !isPasswordValid) {
+      e.preventDefault();
+
+      if (!isEmailValid) {
+        emailInput.focus();
+      } else {
+        passwordInput.focus();
+      }
+    }
   });
 
   emailInput.addEventListener("blur", validateEmail);

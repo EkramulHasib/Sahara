@@ -1,3 +1,57 @@
+<?php
+require_once '../includes/auth.php';
+
+if (isLoggedIn()) {
+  header('Location: ../index.php');
+  exit;
+}
+
+$error = '';
+$success = false;
+$showResendLink = false;
+$userEmail = '';
+
+// Handle resend verification email
+// if (isset($_GET['resend']) && isset($_GET['email'])) {
+//   $email = sanitizeInput($_GET['email']);
+//   $result = resendVerificationEmail($email);
+//
+//   if ($result['success']) {
+//     $success = 'Verification email sent! Please check your inbox.';
+//   } else {
+//     $error = $result['message'];
+//   }
+// }
+
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $email = sanitizeInput($_POST['email'] ?? '');
+  $password = $_POST['password'] ?? '';
+  $remember = isset($_POST['remember']);
+
+  $result = authenticateUser($email, $password);
+  if (!$result['success']) {
+    $error = $result['message'];
+  } else {
+    createUserSession($result['user'], $remember);
+    header('Location: ../index.php');
+    exit;
+  }
+
+  // if (!$user) {
+  //   $error = 'Invalid email or password';
+  // } elseif (isset($user['error']) && $user['error'] === 'email_not_verified') {
+  //   $error = 'Please verify your email address before logging in.';
+  //   $showResendLink = true;
+  //   $userEmail = $email;
+  // } else {
+  //   createUserSession($user, $remember);
+  //   header('Location: ../index.php');
+  //   exit;
+  // }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,25 +77,48 @@
           <p>Sign in to your account to continue shopping</p>
         </div>
 
-        <form action="" method="post" class="auth-form" id="login-form">
+        <?php if ($error): ?>
+          <div class="alert alert-error">
+            <span class="material-symbols-outlined">error</span>
+            <span><?php echo htmlspecialchars($error); ?></span>
+          </div>
+          <?php if ($showResendLink): ?>
+            <div class="success-note">
+              <p>
+                <a href="?resend=1&email=<?php echo urlencode($userEmail); ?>" class="link">
+                  Click here to resend verification email
+                </a>
+              </p>
+            </div>
+          <?php endif; ?>
+        <?php endif; ?>
+
+        <?php if ($success): ?>
+          <div class="alert alert-success">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span><?php echo htmlspecialchars($success); ?></span>
+          </div>
+        <?php endif; ?>
+
+        <form method="post" class="auth-form" id="login-form" novalidate>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" placeholder="Enter your email">
-            <span class="error-massage" id="email-error"></span>
+            <input type="email" name="email" id="email" placeholder="Enter your email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
+            <span class="error-message" id="email-error"></span>
           </div>
 
           <div class="form-group">
             <label for="password">Password</label>
-            <div class="password-wrapper">
+            <div class="password-container">
               <input type="password" name="password" id="password" placeholder="Enter your password">
-              <button class="toggle-password">
+              <button type="button" class="toggle-password" data-target="password">
                 <span class="material-symbols-outlined">visibility</span>
               </button>
             </div>
-            <span class="error-meassage" id="password-error"></span>
+            <span class="error-message" id="password-error"></span>
           </div>
 
-          <div class="form-options">
+          <div class="form-group form-options">
             <label class="checkbox-label" for="remember">
               <input type="checkbox" name="remember" id="remember">
               <span>Remember me</span>
@@ -55,7 +132,7 @@
             <span>OR</span>
           </div>
 
-          <button class="btn-social">
+          <button type="button" class="btn-social">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4" />
               <path d="M9.003 18c2.43 0 4.467-.806 5.956-2.18L12.05 13.56c-.806.54-1.836.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9.003 18z" fill="#34A853" />
@@ -72,6 +149,7 @@
       </div>
     </div>
   </main>
+
 </body>
 
 </html>
