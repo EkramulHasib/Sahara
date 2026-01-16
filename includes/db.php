@@ -2,7 +2,7 @@
 
 // Database configuration
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'sahara');
+define('DB_NAME', 'sahara_db');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
