@@ -240,6 +240,32 @@
   accent-color: var(--blue);
 }
 
+.success-message {
+  text-align: center;
+  padding: 20px;
+}
+
+.success-icon {
+  margin-bottom: 20px;
+}
+
+.success-icon .material-symbols-outlined {
+  font-size: 64px;
+  color: var(--green);
+}
+
+.success-message h1 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.success-message p {
+  font-size: 14px;
+  color: var(--subtext0);
+  line-height: 1.4;
+  margin-bottom: 50px;
+}
+
 .link {
   font-size: 14px;
   color: var(--blue);
@@ -261,6 +287,7 @@
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
   transition:
     background-color 0.2s ease,

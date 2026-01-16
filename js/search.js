@@ -19,7 +19,9 @@
     header.classList.toggle("search-active", isOpen);
     searchForm.setAttribute("aria-hidden", String(!isOpen));
     // toggleBtn.setAttribute("aria-hidden", String(isOpen));
-    if (isOpen) requestAnimationFrame(() => searchInput?.focus());
+    if (isOpen) {
+      setTimeout(() => searchInput.focus(), 200);
+    }
   }
 
   applyState();

@@ -27,6 +27,7 @@ body {
 }
 
 header {
+  max-height: 70px;
   padding: 16px 100px;
   display: flex;
   justify-content: space-between;
@@ -134,6 +135,13 @@ a[aria-current="page"] {
   gap: 20px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
 .seller-btn:hover {
   background-color: var(--maroon);
   color: var(--base);
@@ -160,7 +168,11 @@ a[aria-current="page"] {
 
 .search-form {
   position: absolute;
-  right: 170px;
+  right: 100%;
+  margin-right: 15px;
+  top: 50%;
+  transform: translateY(-50%) translateX(20px) scale(0.95);
+
   display: inline-flex;
   align-items: center;
   background-color: var(--crust);
@@ -171,10 +183,10 @@ a[aria-current="page"] {
 
   opacity: 0;
   visibility: hidden;
-  /* transform: translateX(20px) scale(0.95); */
-  /* transition: */
-  /*   opacity 0.2s ease, */
-  /*   transform 0.2s ease; */
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
 }
 
 @media (max-width: 600px) {
@@ -190,7 +202,7 @@ a[aria-current="page"] {
 .search-form[aria-hidden="false"] {
   opacity: 1;
   visibility: visible;
-  /* transform: translateX(0) scale(1); */
+  transform: translateY(-50%) translateX(0) scale(1);
 }
 
 .search-form input {
@@ -1063,16 +1075,32 @@ footer {
   position: relative;
 }
 
-.btn-account {
+.btn-account,
+.btn-account a {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
+  text-decoration: none;
+  /* max-width: 150px; */
+  overflow: hidden;
+}
+
+.btn-account a {
+  padding: 0;
+}
+
+.btn-account-text {
+  color: var(--subtext0);
 }
 
 .btn-account[aria-expanded="true"] {
   background: color-mix(in srgb, var(--blue) 10%, transparent);
   border-color: var(--blue);
+}
+
+.btn-account[aria-expanded="true"] * {
+  color: var(--blue);
 }
 
 @media (max-width: 600px) {
