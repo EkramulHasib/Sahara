@@ -64,6 +64,9 @@ checkRememberToken();
               <div>
                 <p class="user-name"><?php echo $_SESSION['user_fname'] . ' ' . $_SESSION['user_lname']; ?></p>
                 <p class="user-email"><?php echo $_SESSION['user_email']; ?></p>
+                <p class="user-role <?php echo strtolower($_SESSION['user_role']); ?>">
+                  <?php echo $_SESSION['user_role']; ?>
+                </p>
               </div>
             </div>
 

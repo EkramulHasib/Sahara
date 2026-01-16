@@ -1193,6 +1193,31 @@ footer {
   white-space: nowrap;
 }
 
+.user-role {
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  width: fit-content;
+  background: var(--green);
+  color: var(--crust);
+}
+
+.user-role.admin,
+.user-role.seller,
+.user-role.customer {
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.user-role.admin {
+  background: var(--red);
+}
+
+.user-role.seller {
+  background: var(--yellow);
+}
+
 .account-menu-divider {
   height: 1px;
   background: var(--surface0);
