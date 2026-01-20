@@ -838,3 +838,207 @@ textarea.form-control {
 .section-card-body {
   padding: 24px;
 }
+
+.btn .material-symbols-outlined {
+  color: inherit;
+  font-weight: normal;
+  margin-left: -4px;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--crust);
+}
+
+.btn-primary:hover {
+  background: var(--sapphire);
+}
+
+.btn-secondary {
+  background: var(--surface0);
+}
+
+.btn-secondary:hover {
+  background: var(--surface1);
+}
+
+.btn-ghost {
+  background: var(--crust);
+  color: var(--subtext1);
+  border: 1px solid var(--surface0);
+}
+
+.btn-ghost:hover {
+  background: var(--surface0);
+}
+
+/* Table */
+.role-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.role-table thead {
+  background: var(--mantle);
+  border-bottom: 1px solid var(--surface0);
+}
+
+.role-table th {
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--subtext0);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.role-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--surface0);
+  font-size: 14px;
+}
+
+.role-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.role-table tbody tr:hover {
+  background: var(--base);
+}
+
+.role-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* table actions */
+.table-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.table-btn {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.table-btn .material-symbols-outlined {
+  font-size: 16px;
+  color: inherit;
+}
+
+.table-btn.view {
+  background: var(--surface0);
+  color: var(--blue);
+}
+
+.table-btn.view:hover {
+  background: color-mix(in srgb, var(--blue) 15%, transparent);
+}
+
+.table-btn.edit {
+  background: var(--surface0);
+  color: var(--yellow);
+}
+
+.table-btn.edit:hover {
+  background: color-mix(in srgb, var(--yellow) 15%, transparent);
+}
+
+.table-btn.delete {
+  background: var(--surface0);
+  color: var(--red);
+}
+
+.table-btn.delete:hover {
+  background: color-mix(in srgb, var(--red) 15%, transparent);
+}
+
+.table-btn.delete:hover {
+  background: color-mix(in srgb, var(--red) 15%, transparent);
+}
+
+/* Table footer */
+.table-footer {
+  padding: 8px 24px;
+  border-top: 1px solid var(--surface0);
+}
+
+.table-footer p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--subtext0);
+}
+
+/* badge */
+.badge {
+  border-radius: 6px;
+  padding: 2px 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.badge.badge-new {
+  background: color-mix(in srgb, var(--blue) 15%, transparent);
+  color: var(--blue);
+  font-size: 10px;
+}
+
+.badge.badge-category {
+  background: color-mix(in srgb, var(--lavender) 15%, transparent);
+  color: var(--lavender);
+}
+
+.badge.badge-active {
+  background: color-mix(in srgb, var(--green) 15%, transparent);
+  color: var(--green);
+}
+
+.badge.badge-inactive {
+  background: color-mix(in srgb, var(--red) 15%, transparent);
+  color: var(--red);
+}
+
+td span {
+  white-space: nowrap;
+}
+
+/* Alert Styles */
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.alert .material-symbols-outlined {
+  font-size: 22px;
+}
+
+.alert-success {
+  background: color-mix(in srgb, var(--green) 15%, transparent);
+  color: var(--green);
+  border: 1px solid color-mix(in srgb, var(--green) 30%, transparent);
+}
+
+.alert-error {
+  background: color-mix(in srgb, var(--red) 15%, transparent);
+  color: var(--red);
+  border: 1px solid color-mix(in srgb, var(--red) 30%, transparent);
+}
+
+.alert-info {
+  background: color-mix(in srgb, var(--blue) 15%, transparent);
+  color: var(--blue);
+  border: 1px solid color-mix(in srgb, var(--blue) 30%, transparent);
+}
