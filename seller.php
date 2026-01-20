@@ -27,7 +27,6 @@ if (!in_array($page, $allowed_pages)) {
   <link rel="icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/role.css" />
-  <!-- <link rel="stylesheet" href="css/admin.css" /> -->
 </head>
 
 <body>

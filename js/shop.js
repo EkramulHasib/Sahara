@@ -1,4 +1,4 @@
-import { Product } from "./product.js";
+import { ProductModule } from "./modules/product.js";
 
 (() => {
   const categoryBtns = document.querySelectorAll(".category-btn");
@@ -11,7 +11,11 @@ import { Product } from "./product.js";
   let currentSort = "newest";
   let currentPriceRange = "all";
 
-  if (!productsGrid || !categoryBtns.length || typeof Product === "undefined")
+  if (
+    !productsGrid ||
+    !categoryBtns.length ||
+    typeof ProductModule === "undefined"
+  )
     return;
 
   // read search query param
@@ -73,7 +77,7 @@ import { Product } from "./product.js";
     };
 
     // Fetch products from API
-    Product.fetchProducts(
+    ProductModule.fetchProducts(
       filters,
       (products) => {
         renderFilteredProducts(products);
@@ -96,7 +100,7 @@ import { Product } from "./product.js";
     productsGrid.innerHTML = "";
 
     productsToRender.forEach((product) => {
-      const card = Product.createProductCard(product);
+      const card = ProductModule.createProductCard(product);
       productsGrid.appendChild(card);
     });
   }

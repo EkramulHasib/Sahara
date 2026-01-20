@@ -1,3 +1,5 @@
+import { CartModule } from "./modules/cart.js";
+
 (() => {
   const qtyInput = document.getElementById("quantity-input");
   const qtyDecrease = document.getElementById("qty-decrease");
@@ -39,19 +41,20 @@
       const productId = addToCartBtn.dataset.productId;
       const quantity = qtyInput ? parseInt(qtyInput.value) : 1;
 
-      // TODO: Integrate with cart API
-      console.log(`Adding product ${productId} to cart (qty: ${quantity})`);
-
-      // Show success feedback
+      // Save original HTML for restoration
       const originalHTML = addToCartBtn.innerHTML;
-      addToCartBtn.innerHTML =
-        '<span class="material-symbols-outlined">check</span> Added!';
-      addToCartBtn.disabled = true;
+      
+      // Add to cart with success callback for button feedback
+      CartModule.addItem(productId, quantity, function() {
+        // Success: Show visual feedback on button
+        addToCartBtn.innerHTML = '<span class="material-symbols-outlined">check</span> Added!';
+        addToCartBtn.disabled = true;
 
-      setTimeout(() => {
-        addToCartBtn.innerHTML = originalHTML;
-        addToCartBtn.disabled = false;
-      }, 2000);
+        setTimeout(() => {
+          addToCartBtn.innerHTML = originalHTML;
+          addToCartBtn.disabled = false;
+        }, 2000);
+      });
     });
   }
 

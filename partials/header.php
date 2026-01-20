@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/cart-functions.php';
 checkRememberToken();
+
+// Get cart count from session using helper function
+$cartCount = getCartCount();
 ?>
 
 <header>
@@ -47,9 +51,15 @@ checkRememberToken();
       </form>
       <script defer src="/js/search.js"></script>
 
-      <button class="btn-icon" type="button" id="shopping-cart">
+      <a href="/cart.php" class="btn-icon cart-btn" id="shopping-cart">
         <span class="material-symbols-outlined">shopping_cart</span>
-      </button>
+        <span
+          class="cart-badge"
+          id="cart-badge"
+          style="<?php echo $cartCount > 0 ? 'display:block;' : 'display:none;'; ?>">
+          <?php echo $cartCount; ?>
+        </span>
+      </a>
 
       <?php if (isLoggedIn()): ?>
         <div class="account-dropdown">
@@ -105,3 +115,5 @@ checkRememberToken();
     </div>
   </div>
 </header>
+
+<script type="module" src="/js/modules/cart.js"></script>

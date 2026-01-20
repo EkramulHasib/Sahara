@@ -69,26 +69,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <?php if ($error): ?>
             <div class="alert alert-error">
               <span class="material-symbols-outlined">error</span>
-              <span><?php echo htmlspecialchars($error); ?></span>
+              <span><?php echo $error; ?></span>
             </div>
           <?php endif; ?>
 
           <form action="" method="post" class="auth-form" id="signup-form" novalidate>
             <div class="form-group">
               <label for="name">Full Name</label>
-              <input type="text" name="name" id="name" placeholder="Enter your full name" value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>">
+              <input type="text" name="name" id="name" placeholder="Enter your full name" value="<?php echo $_POST['name'] ?? ''; ?>">
               <span class="error-message" id="name-error"></span>
             </div>
 
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" name="email" id="email" placeholder="Enter your email address" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
+              <input type="email" name="email" id="email" placeholder="Enter your email address" value="<?php echo $_POST['email'] ?? ''; ?>">
               <span class="error-message" id="email-error"></span>
             </div>
 
             <div class="form-group">
               <label for="phone">Phone Number</label>
-              <input type="tel" name="phone" id="phone" placeholder="+880 1234-567890" value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>">
+              <input type="tel" name="phone" id="phone" placeholder="+880 1234-567890" value="<?php echo $_POST['phone'] ?? ''; ?>">
               <span class="error-message" id="phone-error"></span>
             </div>
 

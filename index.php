@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="css/main.css" />
   <script type="module" src="js/home.js"></script>
-  <script defer src="js/hero.js"></script>
+  <script type="module" src="js/hero.js"></script>
   <script type="module" src="js/newsletter.js"></script>
 </head>
 
