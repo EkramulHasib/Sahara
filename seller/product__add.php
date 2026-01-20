@@ -1,3 +1,87 @@
+<?php
+require_once '../includes/db.php';
+require_once '../includes/auth.php';
+
+if (!isLoggedIn() || !in_array($_SESSION['user_role'], ['SELLER', 'ADMIN'])) {
+  header('Location: /index.php');
+  exit;
+}
+
+$seller_id = $_SESSION['user_id'];
+$categories = ['ELECTRONICS', 'FASHION', 'ACCESSORIES', 'HOME'];
+
+$success = false;
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $title = sanitizeInput($_POST['title'] ?? '');
+  $description = sanitizeInput($_POST['description'] ?? '');
+  $price = sanitizeInput($_POST['price'] ?? '');
+  $category = $_POST['category'] ?? '';
+  $stock = sanitizeInput($_POST['stock'] ?? '');
+  $is_new = isset($_POST['is_new']) ? 1 : 0;
+
+  // Validate inputs
+  if (empty($title) || empty($price) || empty($category) || empty($stock)) {
+    $error = 'Please fill in all required fields.';
+  } else if (!in_array($category, $categories)) {
+    $error = 'Invalid category selected.';
+  } else if (!is_numeric($price) || $price <= 0) {
+    $error = 'Please enter a valid price.';
+  } else if (!is_numeric($stock) || $stock <= 0) {
+    $error = 'Please enter a valid stock quantity.';
+  } else {
+    $image_path = null;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+      $allowed_types = ['image/jpeg', 'image/png'];
+      $max_size = 5 * 1024 * 1024;
+
+      $file_type = $_FILES['image']['type'];
+      $file_size = $_FILES['image']['size'];
+
+      if (!in_array($file_type, $allowed_types)) {
+        $error = 'Invalid image format. Only JPG and PNG are allowed.';
+      }
+
+      if ($file_size > $max_size) {
+        $error = 'Image size exceeds the maximum limit of 5MB.';
+      }
+
+      if (empty($error)) {
+        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $filename = uniqid("product_", true) . '.' . $ext;
+        $upload_dir = __DIR__ . '/../uploads/products/';
+        $upload_path = $upload_dir . $filename;
+
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_path)) {
+          $image_path = '/uploads/products/' . $filename;
+        } else {
+          $error = 'Failed to upload image.';
+        }
+      }
+    }
+  }
+
+  if (empty($error)) {
+    $price = floatval($price);
+    $stock = intval($stock);
+
+    $sql =
+      "INSERT INTO products
+      (seller_id, title, description, price, category, stock, is_new, image)
+      VALUES ('$seller_id', '$title', '$description', '$price', '$category', '$stock', '$is_new', '$image_path')";
+
+    if (query($sql)) {
+      $success = true;
+      header('Location: /seller.php?page=products&status=added');
+      exit;
+    } else {
+      $error = 'Failed to add product. Please try again.';
+    }
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +110,13 @@
           <h1>Add New Products</h1>
           <p>Fill in the details below to add a new product to your inventory.</p>
         </div>
+
+        <?php if (!empty($error)): ?>
+          <div class="alert alert-error">
+            <span class="material-symbols-outlined">error</span>
+            <span><?php echo $error; ?></span>
+          </div>
+        <?php endif; ?>
 
         <form method="post" enctype="multipart/form-data" class="product-form" id="product-form">
           <div class="form-section">
@@ -97,7 +188,12 @@
               <div class="form-group">
                 <label for="categories" class="form-label">Category</label>
                 <select name="category" class="form-input" id="category">
-                  <option value="">Select a category</option>
+                  <option value="" disabled>Select a category</option>
+                  <?php foreach ($categories as $cat): ?>
+                    <option value="<?php echo $cat; ?>" <?php echo (isset($category) && $category === $cat) ? 'selected' : '' ?>>
+                      <?php echo ucfirst(strtolower($cat)); ?>
+                    </option>
+                  <?php endforeach; ?>
                 </select>
                 <span class="error-message" id="category-error"></span>
               </div>
@@ -111,6 +207,7 @@
               <label for="stock" class="form-label">Stock Quantity</label>
               <input
                 type="number"
+                name="stock"
                 class="form-input"
                 id="stock"
                 placeholder="0"
