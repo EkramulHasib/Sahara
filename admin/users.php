@@ -6,14 +6,14 @@ $statusFilter = $_GET['status'] ?? '';
 
 $sql = "
   SELECT u.*, 
-         up.first_name, 
-         up.last_name, 
-         up.phone,
-         up.gender,
-         up.address,
-         CONCAT(up.first_name, ' ', COALESCE(up.last_name, '')) as full_name,
-         (SELECT COUNT(*) FROM orders WHERE user_id = u.id) as order_count,
-         (SELECT SUM(total) FROM orders WHERE user_id = u.id AND status IN ('PAID', 'DELIVERED')) as total_spent
+    up.first_name, 
+    up.last_name, 
+    up.phone,
+    up.gender,
+    up.address,
+    CONCAT(up.first_name, ' ', COALESCE(up.last_name, '')) as full_name,
+    (SELECT COUNT(*) FROM orders WHERE user_id = u.id) as order_count,
+    (SELECT SUM(total) FROM orders WHERE user_id = u.id AND status IN ('PAID', 'DELIVERED')) as total_spent
   FROM users u
   LEFT JOIN user_profiles up ON u.id = up.user_id
   WHERE 1=1
@@ -21,7 +21,6 @@ $sql = "
 
 // Apply filters
 if (!empty($searchQuery)) {
-  $searchQuery = mysqli_real_escape_string(getDB(), $searchQuery);
   $sql .= " AND (u.email LIKE '%$searchQuery%' OR up.first_name LIKE '%$searchQuery%' OR up.last_name LIKE '%$searchQuery%')";
 }
 
