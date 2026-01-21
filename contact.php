@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 
@@ -9,7 +11,7 @@
   <link rel="stylesheet" href="css/main.css" />
   <style>
     .contact-hero {
-      background: linear-gradient(135deg, var(--blue) 0%, var(--sapphire) 100%);
+      background: linear-gradient(135deg, var(--mauve) 0%, var(--red) 100%);
       padding: 80px 20px;
       text-align: center;
       border-radius: 20px;
@@ -22,6 +24,7 @@
       font-weight: 700;
       margin-bottom: 20px;
       line-height: 1.2;
+      color: inherit;
     }
 
     .contact-hero p {
@@ -29,6 +32,8 @@
       max-width: 700px;
       margin: 0 auto;
       opacity: 0.95;
+      color: inherit;
+      margin-bottom: 40px;
     }
 
     .contact-container {
@@ -404,7 +409,7 @@
       <!-- Contact Form -->
       <div class="contact-form-section">
         <h2>Send us a Message</h2>
-        
+
         <div class="success-message" id="successMessage">
           <span>✓</span>
           <span>Thank you! Your message has been sent successfully. We'll get back to you soon!</span>
@@ -414,19 +419,19 @@
           <div class="form-row">
             <div class="form-group">
               <label for="name">Full Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
+              <input
+                type="text"
+                id="name"
+                name="name"
                 placeholder="John Doe"
                 required>
             </div>
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
+              <input
+                type="email"
+                id="email"
+                name="email"
                 placeholder="john@example.com"
                 required>
             </div>
@@ -435,10 +440,10 @@
           <div class="form-row">
             <div class="form-group">
               <label for="phone">Phone Number</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
                 placeholder="+880 1234-567890">
             </div>
             <div class="form-group">
@@ -456,9 +461,9 @@
 
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea 
-              id="message" 
-              name="message" 
+            <textarea
+              id="message"
+              name="message"
               placeholder="Type your message here..."
               required></textarea>
           </div>
@@ -559,7 +564,7 @@
     // Form Submission
     document.getElementById('contactForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const subject = document.getElementById('subject').value;
@@ -578,7 +583,7 @@
       // Show success message
       const successMsg = document.getElementById('successMessage');
       successMsg.classList.add('show');
-      
+
       // Reset form
       document.getElementById('contactForm').reset();
 

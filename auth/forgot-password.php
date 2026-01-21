@@ -30,20 +30,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!validateEmail($email)) {
       $error = 'Please enter a valid email address.';
     } else {
-      // Check if email exists
       $user = fetchOne("SELECT id, email FROM users WHERE email = '$email'");
 
       if (!$user) {
-        // Don't reveal if email exists (security best practice)
         $success = true;
         $step = 'confirm';
         $email_submitted = $email;
       } else {
-        // Generate reset token
         $reset_token = bin2hex(random_bytes(32));
         $reset_expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
 
-        // Store token in database (using remember_tokens table temporarily)
         $result = query(
           "INSERT INTO remember_tokens (user_id, token, expires_at)
            VALUES ('{$user['id']}', '$reset_token', '$reset_expires')"
@@ -52,8 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$result) {
           $error = 'Failed to generate reset link. Please try again.';
         } else {
-          // In production, send email with reset link
-          // For development, log to error_log
           $reset_url = "http://" . $_SERVER['HTTP_HOST'] . "/auth/forgot-password.php?token=" . $reset_token;
           error_log("Password Reset URL: " . $reset_url);
 
@@ -97,7 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$update_result) {
           $error = 'Failed to update password. Please try again.';
         } else {
-          // Delete used token
           query("DELETE FROM remember_tokens WHERE token = '$token'");
           $success = true;
           $step = 'success';
@@ -140,7 +133,7 @@ if ($step === 'reset' && !empty($reset_token)) {
     <div class="auth-container">
       <div class="auth-card">
 
-        <!-- REQUEST PASSWORD RESET STEP -->
+
         <?php if ($step === 'request'): ?>
           <div class="auth-header">
             <h1>Reset Your Password</h1>
@@ -150,7 +143,7 @@ if ($step === 'reset' && !empty($reset_token)) {
           <?php if ($error): ?>
             <div class="alert alert-error">
               <span class="material-symbols-outlined">error</span>
-              <span><?php echo htmlspecialchars($error); ?></span>
+              <span><?php echo $error; ?></span>
             </div>
           <?php endif; ?>
 
@@ -159,16 +152,12 @@ if ($step === 'reset' && !empty($reset_token)) {
 
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" name="email" id="email" placeholder="Enter your registered email" 
-                value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required>
+              <input type="email" name="email" id="email" placeholder="Enter your registered email"
+                value="<?php echo $_POST['email'] ?? ''; ?>" required>
               <span class="error-message" id="email-error"></span>
             </div>
 
             <button type="submit" class="btn-primary">Send Reset Link</button>
-
-            <div class="auth-divider">
-              <span>OR</span>
-            </div>
 
             <div class="auth-footer">
               <p>
@@ -177,29 +166,28 @@ if ($step === 'reset' && !empty($reset_token)) {
             </div>
           </form>
 
-        <!-- CONFIRMATION STEP -->
+
         <?php elseif ($step === 'confirm'): ?>
           <div class="success-message">
             <div class="success-icon">
               <span class="material-symbols-outlined">mail</span>
             </div>
             <h1>Check Your Email</h1>
-            <p>We've sent a password reset link to <strong><?php echo htmlspecialchars($email_submitted); ?></strong></p>
+            <p>We've sent a password reset link to <strong><?php echo $email_submitted; ?></strong></p>
             <p style="color: var(--subtext0); margin-top: 20px;">
               The link will expire in 1 hour. If you don't see the email, check your spam folder.
             </p>
-            <div style="margin-top: 30px; display: flex; gap: 12px; flex-direction: column;">
-              <a href="login.php" class="btn-primary" style="text-align: center; text-decoration: none;">
+            <div class="btn-group">
+              <a href="login.php" class="btn-primary">
                 Back to Sign In
               </a>
-              <button type="button" class="btn-secondary" onclick="location.href='forgot-password.php'" 
-                style="background: var(--surface0); text-decoration: none;">
+              <a href="/auth/forgot-password.php" class="btn-social">
                 Try Another Email
-              </button>
+              </a>
             </div>
           </div>
 
-        <!-- RESET PASSWORD STEP -->
+
         <?php elseif ($step === 'reset'): ?>
           <div class="auth-header">
             <h1>Create New Password</h1>
@@ -209,18 +197,18 @@ if ($step === 'reset' && !empty($reset_token)) {
           <?php if ($error): ?>
             <div class="alert alert-error">
               <span class="material-symbols-outlined">error</span>
-              <span><?php echo htmlspecialchars($error); ?></span>
+              <span><?php echo $error; ?></span>
             </div>
           <?php endif; ?>
 
           <form method="post" class="auth-form" novalidate>
             <input type="hidden" name="form_type" value="reset_password">
-            <input type="hidden" name="token" value="<?php echo htmlspecialchars($reset_token); ?>">
+            <input type="hidden" name="token" value="<?php echo $reset_token; ?>">
 
             <div class="form-group">
               <label for="new_password">New Password</label>
               <div class="password-container">
-                <input type="password" name="new_password" id="new_password" 
+                <input type="password" name="new_password" id="new_password"
                   placeholder="Create a new password" minlength="8" required>
                 <button type="button" class="toggle-password" data-target="new_password">
                   <span class="material-symbols-outlined">visibility</span>
@@ -235,7 +223,7 @@ if ($step === 'reset' && !empty($reset_token)) {
             <div class="form-group">
               <label for="confirm_password">Confirm Password</label>
               <div class="password-container">
-                <input type="password" name="confirm_password" id="confirm_password" 
+                <input type="password" name="confirm_password" id="confirm_password"
                   placeholder="Re-enter your password" minlength="8" required>
                 <button type="button" class="toggle-password" data-target="confirm_password">
                   <span class="material-symbols-outlined">visibility</span>
@@ -246,16 +234,12 @@ if ($step === 'reset' && !empty($reset_token)) {
 
             <button type="submit" class="btn-primary">Reset Password</button>
 
-            <div class="auth-divider">
-              <span>OR</span>
-            </div>
-
             <div class="auth-footer">
               <p><a class="link" href="login.php">Back to Sign In</a></p>
             </div>
           </form>
 
-        <!-- SUCCESS STEP -->
+
         <?php elseif ($step === 'success'): ?>
           <div class="success-message">
             <div class="success-icon">

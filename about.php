@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 
@@ -9,7 +11,7 @@
   <link rel="stylesheet" href="css/main.css" />
   <style>
     .about-hero {
-      background: linear-gradient(135deg, var(--blue) 0%, var(--sapphire) 100%);
+      background: linear-gradient(135deg, var(--mauve) 0%, var(--blue) 100%);
       padding: 80px 20px;
       text-align: center;
       border-radius: 20px;
@@ -22,6 +24,7 @@
       font-weight: 700;
       margin-bottom: 20px;
       line-height: 1.2;
+      color: inherit;
     }
 
     .about-hero p {
@@ -29,6 +32,8 @@
       max-width: 700px;
       margin: 0 auto;
       opacity: 0.95;
+      color: inherit;
+      margin-bottom: 40px;
     }
 
     .about-section {
@@ -159,99 +164,6 @@
       font-size: 14px;
       color: var(--subtext0);
     }
-
-    .timeline {
-      position: relative;
-      padding: 40px 0;
-      margin: 40px 0;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 100%;
-      background: var(--surface0);
-    }
-
-    .timeline-item {
-      margin-bottom: 40px;
-      width: 48%;
-    }
-
-    .timeline-item:nth-child(odd) {
-      margin-left: 0;
-      text-align: right;
-      padding-right: 5%;
-    }
-
-    .timeline-item:nth-child(even) {
-      margin-left: 52%;
-      text-align: left;
-      padding-left: 5%;
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 16px;
-      height: 16px;
-      background: var(--blue);
-      border: 3px solid var(--crust);
-      border-radius: 50%;
-      top: 20px;
-      margin-top: -8px;
-    }
-
-    .timeline-content {
-      background: var(--mantle);
-      border: 1px solid var(--surface0);
-      padding: 20px;
-      border-radius: 8px;
-    }
-
-    .timeline-year {
-      font-weight: 700;
-      color: var(--blue);
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-
-    .timeline-text {
-      font-size: 14px;
-      color: var(--subtext0);
-    }
-
-    @media (max-width: 768px) {
-      .about-hero h1 {
-        font-size: 32px;
-      }
-
-      .about-section h2 {
-        font-size: 24px;
-      }
-
-      .timeline::before {
-        display: none;
-      }
-
-      .timeline-item,
-      .timeline-item:nth-child(odd),
-      .timeline-item:nth-child(even) {
-        width: 100%;
-        margin-left: 0;
-        text-align: left;
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .timeline-dot {
-        display: none;
-      }
-    }
   </style>
 </head>
 
@@ -343,55 +255,6 @@
         <div class="stat-item">
           <div class="stat-number">99.5%</div>
           <div class="stat-label">Satisfaction Rate</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Journey Timeline -->
-    <section class="about-section">
-      <h2>Our Journey</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-year">2020</div>
-            <div class="timeline-text">Sahara was founded by a team of passionate entrepreneurs</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-year">2021</div>
-            <div class="timeline-text">Launched our platform with 500+ products and 10 sellers</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-year">2022</div>
-            <div class="timeline-text">Reached 10K+ customers and expanded to 100+ sellers</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-year">2023</div>
-            <div class="timeline-text">Implemented advanced features and improved logistics</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-year">2024</div>
-            <div class="timeline-text">Celebrated 50K+ customers and launched mobile app</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-year">2025</div>
-            <div class="timeline-text">Continuing to innovate with new features and better service</div>
-          </div>
         </div>
       </div>
     </section>
